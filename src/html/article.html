@@ -1,0 +1,49 @@
+{{define "head"}}
+<link rel="stylesheet" href="/static/css/article.css">
+<title>{{.Title}}</title>
+{{end}}
+
+{{define "body"}}
+<nav>
+    <div class="nav-wrapper">
+        <a href="/">Malin Nilsson</a>
+        <div class="nav-menu">
+            <a href="/inlägg">Inlägg</a>
+            <a href="/exempel">Exempel</a>
+        </div>
+    </div>
+</nav>
+<main>
+    <div class="wrapper">
+        <div class="article">
+            <h1>{{.Title}}</h1>
+            <p>{{.Description}}</p>
+            {{if .ImgURL}}
+            <div class="img-wrapper">
+                <img src="{{.ImgURL}}"/>
+            </div>
+            {{end}}
+            {{range .Blocks}}
+            <div id="{{.ID}}">
+                {{if eq .BlockType 1}}
+                <h2>{{.TextBlock.Title}}</h2>
+                <p>{{.TextBlock.Paragraph}}</p>
+                {{end}}
+                {{if eq .BlockType 2}}
+                <div class="img-wrapper">
+                    <img class="img" src="{{.ImgBlock.Img.ImgURL}}" alt="{{.ImgBlock.Img.Description}}"/>
+                </div>
+                {{end}}
+                {{if eq .BlockType 3}}
+                <div class="img-grid">
+                    {{range .GalleryBlock.Images}}
+                    <img src="{{.ImgURL}}" alt="{{.Description}}"/>
+                    {{end}}
+                </div>
+                {{end}}
+            </div>
+            {{end}}
+        </div>
+    </div>
+</main>
+{{end}}

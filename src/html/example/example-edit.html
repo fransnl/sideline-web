@@ -1,0 +1,58 @@
+{{define "head"}}
+<link rel="stylesheet" href="/static/css/elements/text-editor.css">
+<title>Malin Nilsson</title>
+{{end}}
+
+{{define "body"}}
+<nav>
+    <div class="nav-wrapper">
+        <a href="/">Malin Nilsson</a>
+        <div class="nav-menu">
+            <a href="/inlägg">Inlägg</a>
+            <a href="/exempel">Exempel</a>
+        </div>
+    </div>
+</nav>
+<main>
+    <div class="wrapper">
+        {{template "text-editor"}}
+    </div>
+</main>
+{{end}}
+
+{{define "text-editor"}}
+<div class="card">
+    <button class="menu-button" onclick="toggleEditMode()">Edit</button>
+    <h2 class="card-title">Text Editor</h2>
+    <p id="text-content" class="text-content">This is a paragraph. Click edit to modify.</p>
+    <textarea id="text-box" class="text-box" style="display: none;"></textarea>
+    <div class="dropdown-menu">
+    </div>
+</div>
+  
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('menu-options');
+      menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+    }
+  
+    function toggleEditMode() {
+      const textContent = document.getElementById('text-content');
+      const textBox = document.getElementById('text-box');
+      const menu = document.getElementById('menu-options');
+  
+      if (textContent.style.display !== 'none') {
+        textBox.value = textContent.textContent;
+        textContent.style.display = 'none';
+        textBox.style.display = 'block';
+        textBox.focus();
+      } else {
+        textContent.textContent = textBox.value;
+        textBox.style.display = 'none';
+        textContent.style.display = 'block';
+      }
+  
+      menu.style.display = 'none';
+    }
+  </script>
+{{end}}
