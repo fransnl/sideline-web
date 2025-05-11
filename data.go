@@ -19,7 +19,7 @@ var b = []block{
 }
 var a1 = article{
 	"a1",
-	"Exempel Artikel 1",
+	"Exempel Works 1",
 	"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi venenatis viverra varius. Duis suscipit fringilla arcu quis fringilla. Phasellus fringilla porta nisi auctor porta. Cras vel nulla porta, laoreet erat eu, pellentesque diam. Aliquam ut laoreet massa, at dignissim neque.",
 	"https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExYzgxaDQzNG1xdDgxNnB5ZHhtYnpvN3RkZm10bWp5cW5nYjMxanBoMCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/dvNwhVCMyvEwSLPRem/giphy.gif",
 	b,
@@ -27,13 +27,21 @@ var a1 = article{
 
 var a2 = article{
 	"a2",
-	"Exempel Artikel 2",
+	"Exempel Works 2",
 	"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi venenatis viverra varius. Duis suscipit fringilla arcu quis fringilla. Phasellus fringilla porta nisi auctor porta. Cras vel nulla porta, laoreet erat eu, pellentesque diam. Aliquam ut laoreet massa, at dignissim neque.",
 	"https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExYzgxaDQzNG1xdDgxNnB5ZHhtYnpvN3RkZm10bWp5cW5nYjMxanBoMCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/dvNwhVCMyvEwSLPRem/giphy.gif",
 	[]block{},
 }
 
-var allArticles = []article{a1, a2}
+var a3 = article{
+	"a3",
+	"Exempel Works 3",
+	"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi venenatis viverra varius. Duis suscipit fringilla arcu quis fringilla. Phasellus fringilla porta nisi auctor porta. Cras vel nulla porta, laoreet erat eu, pellentesque diam. Aliquam ut laoreet massa, at dignissim neque.",
+	"https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExYzgxaDQzNG1xdDgxNnB5ZHhtYnpvN3RkZm10bWp5cW5nYjMxanBoMCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/dvNwhVCMyvEwSLPRem/giphy.gif",
+	[]block{b[4]},
+}
+
+var allArticles = []article{a1, a2, a3, a3}
 
 func getArticles() []article {
 	return allArticles

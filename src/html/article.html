@@ -1,28 +1,22 @@
 {{define "head"}}
-<link rel="stylesheet" href="/static/css/article.css">
 <title>{{.Title}}</title>
 {{end}}
 
 {{define "body"}}
-<nav>
-    <div class="nav-wrapper">
-        <a href="/">Malin Nilsson</a>
-        <div class="nav-menu">
-            <a href="/inlägg">Inlägg</a>
-            <a href="/exempel">Exempel</a>
-        </div>
-    </div>
-</nav>
 <main>
     <div class="wrapper">
         <div class="article">
-            <h1>{{.Title}}</h1>
-            <p>{{.Description}}</p>
-            {{if .ImgURL}}
-            <div class="img-wrapper">
-                <img src="{{.ImgURL}}"/>
+            <div class="article-head">
+                <div class="article-head-text">
+                    <h1>{{.Title}}</h1>
+                    <p>{{.Description}}</p>
+                </div>
+                {{if .ImgURL}}
+                <div class="img-wrapper">
+                    <img src="{{.ImgURL}}"/>
+                </div>
+                {{end}}
             </div>
-            {{end}}
             {{range .Blocks}}
             <div id="{{.ID}}">
                 {{if eq .BlockType 1}}
