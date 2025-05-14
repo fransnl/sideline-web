@@ -1,13 +1,36 @@
 {{define "head"}}
 <title>Malin Nilsson</title>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const slides = document.querySelectorAll('.round-carousel-slide');
+        let currentSlide = 0;
+        
+        function rotateCarousel() {
+            // Remove active class from current slide
+            slides[currentSlide].classList.remove('active');
+            
+            // Move to next slide
+            currentSlide = (currentSlide + 1) % slides.length;
+            
+            // Add active class to new current slide
+            slides[currentSlide].classList.add('active');
+        }
+        
+        // Set interval to rotate every 1 second (1000ms)
+        setInterval(rotateCarousel, 2000);
+    });
+</script>
 {{end}}
 
 {{define "body"}}
 <main>
     <div class="wrapper">
         <div class="hero">
-            <h1>Malin Nilsson</h1>
-            <p>Det här är malins hemsida.</p>
+            <div class="round-carousel-container">
+                <img src="https://media.timeout.com/images/106006274/image.jpg" alt="Image 1" class="round-carousel-slide active">
+                <img src="https://media.cnn.com/api/v1/images/stellar/prod/190430171751-mona-lisa.jpg?q=w_2000,c_fill" alt="Image 2" class="round-carousel-slide">
+                <img src="https://finearttutorials.com/wp-content/uploads/2023/06/famous-portrait-paintings-1024x768.png" alt="Image 3" class="round-carousel-slide">
+            </div>
         </div>
     </div>
 </main>

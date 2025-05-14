@@ -6,17 +6,13 @@
 <main>
     <div class="wrapper">
         <div class="article">
-            <div class="article-head">
-                <div class="article-head-text">
-                    <h1>{{.Title}}</h1>
-                    <p>{{.Description}}</p>
-                </div>
-                {{if .ImgURL}}
-                <div class="img-wrapper">
-                    <img src="{{.ImgURL}}"/>
-                </div>
-                {{end}}
+            {{if .ImgURL}}
+            <div class="img-wrapper">
+                <img src="{{.ImgURL}}" />
             </div>
+            {{end}}
+            <h1>{{.Title}}</h1>
+            <p>{{.Description}}</p>
             {{range .Blocks}}
             <div id="{{.ID}}">
                 {{if eq .BlockType 1}}
@@ -25,15 +21,103 @@
                 {{end}}
                 {{if eq .BlockType 2}}
                 <div class="img-wrapper">
-                    <img class="img" src="{{.ImgBlock.Img.ImgURL}}" alt="{{.ImgBlock.Img.Description}}"/>
+                    <img class="img" src="{{.ImgBlock.Img.ImgURL}}" alt="{{.ImgBlock.Img.Description}}" />
                 </div>
                 {{end}}
                 {{if eq .BlockType 3}}
-                <div class="img-grid">
-                    {{range .GalleryBlock.Images}}
-                    <img src="{{.ImgURL}}" alt="{{.Description}}"/>
-                    {{end}}
+                <div class="gallery-block">
+                    <div class="carousel-container">
+                        <div class="carousel">
+                            {{range .GalleryBlock.Images}}
+                            <div class="carousel-slide">
+                                <img src="{{.ImgURL}}" alt="{{.Description}}">
+                            </div>
+                            {{end}}
+                        </div>
+                        <button class="carousel-arrow prev">&#10094;</button>
+                        <button class="carousel-arrow next">&#10095;</button>
+                    </div>
                 </div>
+                <script>
+                const carousel = document.querySelector('.carousel');
+                const slides = document.querySelectorAll('.carousel-slide');
+                const prevBtn = document.querySelector('.prev');
+                const nextBtn = document.querySelector('.next');
+                const indicators = document.querySelectorAll('.indicator');
+
+                let currentIndex = 0;
+                const slideCount = slides.length;
+
+                // Function to go to a specific slide
+                function goToSlide(index) {
+                    if (index < 0) {
+                        index = slideCount - 1;
+                    } else if (index >= slideCount) {
+                        index = 0;
+                    }
+
+                    carousel.style.transform = `translateX(-${index * 100}%)`;
+
+                    // Update indicators
+                    indicators.forEach((indicator, i) => {
+                        if (i === index) {
+                            indicator.classList.add('active');
+                        } else {
+                            indicator.classList.remove('active');
+                        }
+                    });
+
+                    currentIndex = index;
+                }
+
+                // Event listeners for arrows
+                prevBtn.addEventListener('click', () => {
+                    goToSlide(currentIndex - 1);
+                });
+
+                nextBtn.addEventListener('click', () => {
+                    goToSlide(currentIndex + 1);
+                });
+
+                // Event listeners for indicators
+                indicators.forEach(indicator => {
+                    indicator.addEventListener('click', () => {
+                        const index = parseInt(indicator.getAttribute('data-index'));
+                        goToSlide(index);
+                    });
+                });
+
+                // Add swipe support for touch devices
+                let touchStartX = 0;
+                let touchEndX = 0;
+
+                carousel.addEventListener('touchstart', e => {
+                    touchStartX = e.changedTouches[0].screenX;
+                }, { passive: true });
+
+                carousel.addEventListener('touchend', e => {
+                    touchEndX = e.changedTouches[0].screenX;
+                    handleSwipe();
+                }, { passive: true });
+
+                function handleSwipe() {
+                    const threshold = 50; // minimum distance for swipe
+
+                    if (touchStartX - touchEndX > threshold) {
+                        // Swiped left, go to next slide
+                        goToSlide(currentIndex + 1);
+                    } else if (touchEndX - touchStartX > threshold) {
+                        // Swiped right, go to previous slide
+                        goToSlide(currentIndex - 1);
+                    }
+                }
+
+                // Optional: Auto-play
+                // const autoPlayInterval = 5000; // 5 seconds
+                // setInterval(() => {
+                //     goToSlide(currentIndex + 1);
+                // }, autoPlayInterval);
+                </script>
                 {{end}}
             </div>
             {{end}}

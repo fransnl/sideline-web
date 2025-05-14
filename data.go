@@ -3,7 +3,7 @@ package main
 var allImg []img = []img{
 	{1, "Starry night", "A starry night by Van Gough.", "https://media.timeout.com/images/106006274/image.jpg"},
 	{2, "Mona Lisa", "Mona Lisa by Leonardo DaVinci.", "https://media.cnn.com/api/v1/images/stellar/prod/190430171751-mona-lisa.jpg?q=w_2000,c_fill"},
-	{3, "Water lilies", "Water lilies by Claude Monet.", "https://collectionapi.metmuseum.org/api/collection/v1/iiif/438008/preview"},
+	{3, "Water lilies", "Water lilies by Claude Monet.", "https://finearttutorials.com/wp-content/uploads/2023/06/famous-portrait-paintings-1024x768.png"},
 }
 
 var t = blockText{"", "", "", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi venenatis viverra varius. Duis suscipit fringilla arcu quis fringilla. Phasellus fringilla porta nisi auctor porta. Cras vel nulla porta, laoreet erat eu, pellentesque diam. Aliquam ut laoreet massa, at dignissim neque."}

@@ -25,7 +25,6 @@ func Routes() http.Handler {
 	mux.HandleFunc("/works", articlesPage)
 	mux.HandleFunc("/about", aboutPage)
 	mux.HandleFunc("/works/{id}", articlePage)
-	mux.HandleFunc("/exempel", exampleEditPage)
 
 	fs := http.FileServer(http.Dir("./src/static"))
 	mux.Handle("/static/", http.StripPrefix("/static", fs))

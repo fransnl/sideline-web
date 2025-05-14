@@ -77,7 +77,7 @@
     }
     
     .wrapper {
-        margin-top: var(--spacing-6);
+        margin-top: var(--spacing-9);
         max-width: var(--container-4xl);
         margin-inline: auto;
         padding-bottom: var(--spacing-8);
@@ -89,7 +89,7 @@
         align-items: center;
         justify-content: space-between;
         min-height: var(--spacing-8);
-        max-width: var(--container-4xl);
+        max-width: var(--container-7xl);
         margin-inline: auto;
         padding-inline: var(--spacing-2);
     }
@@ -107,8 +107,35 @@
 /* Index */
 @layer page {
     .hero {
-        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         margin-top: var(--spacing-10);
+    }
+
+    .round-carousel-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        width: 600px;
+        height: 600px;
+        overflow: hidden;
+        border-radius: 50%;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    .round-carousel-slide {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: opacity 0.6s ease-in-out;
+        object-fit: cover;
+    }
+    
+    .round-carousel-slide.active {
+        opacity: 1;
     }
 }
 
@@ -119,9 +146,17 @@
     }
     
     .img-wrapper {
-        max-width: 50%;
+        display: flex;
+        align-items: center;
+        max-height: var(--container-2xl);
         margin-inline: auto;
     }
+
+    .img-wrapper img {
+        margin-inline: auto;
+        height: 100%;
+        max-height: var(--container-2xl);
+    } 
     
     .img-grid {
         display: grid;
@@ -145,6 +180,118 @@
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
         gap: var(--spacing-4);
+    }
+
+    .gallery-block {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .carousel-container {
+        position: relative;
+        max-width: var(--container-4xl);
+        width: 100%;
+        overflow: hidden;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        background-color: rgb(22, 22, 22);
+    }
+
+    .carousel {
+        display: flex;
+        transition: transform 0.4s ease-in-out;
+        height: 100%;
+    }
+
+    .carousel-slide {
+        min-width: 100%;
+        height: 100%;
+    }
+
+    .carousel-slide img {
+        width: 100%;
+        max-height: 600px;
+        height: 100%;
+        display: block;
+        aspect-ratio: 1/1;
+        object-position: center;
+        object-fit: contain;
+    }
+
+    .carousel-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 40px;
+        height: 40px;
+        background-color: rgba(255, 255, 255, 0.7);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 20px;
+        color: #333;
+        cursor: pointer;
+        border: none;
+        outline: none;
+        transition: background-color 0.3s;
+        z-index: 2;
+    }
+
+    .carousel-arrow:hover {
+        background-color: rgba(255, 255, 255, 0.9);
+    }
+
+    .prev {
+        left: 10px;
+    }
+
+    .next {
+        right: 10px;
+    }
+
+    .carousel-indicators {
+        position: absolute;
+        bottom: 15px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 8px;
+    }
+
+    .indicator {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.5);
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .indicator.active {
+        background-color: white;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .carousel-container {
+            max-width: 90%;
+        }
+
+        .carousel-arrow {
+            width: 30px;
+            height: 30px;
+            font-size: 16px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .carousel-arrow {
+            width: 25px;
+            height: 25px;
+            font-size: 14px;
+        }
     }
 }
 
